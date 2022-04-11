@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+  
+
+<record id="risk_incident_analysis" model="ir.actions.act_window">
+        <field name="name">Incidents</field>
+        <field name="res_model">risk.project</field>
+        <field name="view_mode">graph</field>
+
+    </record>
+
+
+    <!--action menu risk-->
+    <record id="action_view_disaster" model="ir.actions.act_window">
+        <field name="name">Risks</field>
+        <field name="res_model">risk.disaster</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+
+    </record>
+    <!--action analysis action-->
+    <record id="action_view_disaster_graph" model="ir.actions.act_window">
+        <field name="name">Risk Tasks Analysis</field>
+        <field name="res_model">risk.action</field>
+        <field name="view_mode">graph</field>
+
+    </record>
+
+
+    <!--action impact risk-->
+    <record id="action_view_impact_disaster" model="ir.actions.act_window">
+        <field name="name">Risk impacts</field>
+        <field name="res_model">risk.impact</field>
+        <field name="view_mode">tree,form,graph</field>
+
+    </record>
+
+
+    <!--risk cause action-->
+    <record id="action_view_risks_cause_form" model="ir.actions.act_window">
+        <field name="name">Risk causes</field>
+        <field name="res_model">risk.cause</field>
+        <field name="view_mode">kanban,tree,form</field>
+
+    </record>
+
+
+    <!--risk actions action-->
+    <record id="action_view_risks_actions_form" model="ir.actions.act_window">
+        <field name="name">Risk Tasks</field>
+        <field name="res_model">risk.action</field>
+        <field name="view_mode">kanban,form,tree,graph</field>
+
+    </record>
+
+
+    <!--action menu -->
+
+    <record id="action_view_risks_form" model="ir.actions.act_window">
+        <field name="name">Risks informations</field>
+        <field name="res_model">risk.disaster</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+
+    </record>
+
+
+    <!--prevention action -->
+    <record id="action_view_risks_prevention" model="ir.actions.act_window">
+        <field name="name">Risks miltigation</field>
+        <field name="res_model">risk.miltigation</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+    <!-- strategy action-->
+    <record id="action_view_risks_strategy" model="ir.actions.act_window">
+        <field name="name">Risks strategy</field>
+        <field name="res_model">risk.miltigation</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+
+<record id="action_view_disaster_impact" model="ir.actions.act_window">
+        <field name="name">impact graph</field>
+        <field name="res_model">risk.impact</field>
+        <field name="view_mode">graph</field>
+
+    </record>
+
+
+    <record id="action_view_risks_form" model="ir.actions.act_window">
+        <field name="name">Risks informations</field>
+        <field name="res_model">risk.disaster</field>
+        <field name="view_mode">kanban,form,tree,graph</field>
+
+    </record>
+
+
+    <record id="risk_project_view" model="ir.actions.act_window">
+        <field name="name">Risks informations</field>
+        <field name="res_model">risk.project</field>
+        <field name="view_mode">kanban,form,tree,graph</field>
+
+    </record>
+
+    <record id="form_view_risk_task_project" model="ir.ui.view">
+        <field name="name">project.incident.form.view</field>
+        <field name="model">risk.project</field>
+        <field name="arch" type="xml">
+            <form>
+
+                    <header>
+
+                    <field name="incident_stage" widget="statusbar" options="{'clickable':'1'}"/>
+
+                    <button type="object" name="set_inprogress" string="set in progress"
+                            attrs="{'invisible':[('incident_stage','!=','draft')]}" style="background-color:#ec6f5c"/>
+                    <button type="object" name="set_draft" string="set in draft"
+                            attrs="{'invisible':[('incident_stage','!=','closed')]}" style="background-color:#d0ecf1"/>
+
+                    <button type="object" name="set_closed" string="set in closed"
+                            attrs="{'invisible':[('incident_stage','!=','inprogress')]}"
+                            style="background-color:#81ee80"/>
+
+                </header>
+
+
+
+                <sheet>
+                    <group>
+                    <field name="incident_name"/>
+                    <field name="incident_project"/>
+                    <field name="incident_description"/>
+                    <field name="assigned_to"/>
+                     <field name="image" widget="image" width="100px" height="100xpx"/>
+                    </group>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+     <record id="tree_view_risk_task_project" model="ir.ui.view">
+        <field name="name">project.incident.tree.view</field>
+        <field name="model">risk.project</field>
+        <field name="arch" type="xml">
+                <tree>
+                    <field name="incident_name"/>
+                    <field name="incident_project"/>
+                    <field name="incident_description"/>
+                    <field name="assigned_to"/>
+
+                </tree>
+        </field>
+     </record>
+
+
+
+
+
+
+    <!--tree risk disaster view-->
+    <record id="tree_view_risk_disaster_form" model="ir.ui.view">
+        <field name="name">tree.view.risk</field>
+        <field name="model">risk.disaster</field>
+
+        <field name="arch" type="xml">
+            <tree string="disaster risk" decoration-info=" risk_status=='draft'"
+                  decoration-success=" risk_status=='inprogress'" decoration-danger=" risk_status=='closed'">
+                <field name="risk_name"/>
+                <field name="risk_status"/>
+                <field name="risk_category"/>
+                <field name="risk_description"/>
+                <field name="risk_start_datetime"/>
+                <field name="risk_end_datetime"/>
+                <field name="priority_level"/>
+                <!--                <field name="duration_risk"/>-->
+            </tree>
+        </field>
+    </record>
+
+
+    <!--search view disaster-->
+    <record id="view_disaster_search" model="ir.ui.view">
+        <field name="name">risk.search</field>
+        <field name="model">risk.disaster</field>
+        <field name="arch" type="xml">
+            <search string="disaster risk">
+                <filter name="inprogress" string="In progress" domain="[('risk_status','=','inprogress')]"/>
+                <filter name="draft" string="In progress" domain="[('risk_status','=','draft')]"/>
+                <filter name="closed" string="In progress"
+                        domain="[('risk_status','=','closed')]"/><!-- name indique le clé declarer in model.py-->
+
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- risk causes view-->
+    <record id="tree_view_risk_form" model="ir.ui.view">
+        <field name="name">form.view.risk</field>
+        <field name="model">risk.cause</field>
+        <field name="arch" type="xml">
+            <tree string="cause view">
+                <field name="cause_name"/>
+                <!--                 <field name="risk_name"/>-->
+                <field name="risk_cause_id"/>
+                <field name="risk_causes"/>
+                <field name="risk_responsible_ids"/>
+                <field name="risk_cause_source"/>
+                <field name="cause_category"/>
+                <!--                 <field name="risk_status"/>-->
+                <field name="risk_responsible_category"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--actions risk tree view  -->
+    <record id="tree_view_risk_action_tree" model="ir.ui.view">
+        <field name="name">form.view.action</field>
+        <field name="model">risk.action</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!--                 <field name="actions_ids"/>-->
+
+                <field name="action_category"/>
+                <field name="progress_action"/>
+                <field name="action_success"/>
+                <field name="risk_owner"/>
+                <field name="action_description"/>
+                <field name="action_start_date"/>
+                <field name="action_end_date"/>
+                <field name="department_id"/>
+
+
+                <field name="action_status"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_risk_view_form" model="ir.ui.view">
+        <field name="name">action.form.view</field>
+        <field name="model">risk.action</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="risk_status" widget="statusbar" options="{'clickable':'1'}"/>
+
+                    <button type="object" name="set_state_risk_inprogress" string="set in progress"
+                            attrs="{'invisible':[('risk_status','!=','draft')]}" style="background-color:#ec6f5c"/>
+                    <button type="object" name="set_state_risk_draft" string="set in draft"
+                            attrs="{'invisible':[('risk_status','!=','closed')]}" style="background-color:#d0ecf1"/>
+
+                    <button type="object" name="set_state_risk_closed" string="set in closed"
+                            attrs="{'invisible':[('risk_status','!=','inprogress')]}"
+                            style="background-color:#81ee80"/>
+
+
+
+
+                </header>
+
+
+                <sheet>
+
+
+                    <h1 style=" color:white;background-color:#9caad2; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 500; line-height: 50px; margin: 0 0 24px; text-align: center; text-transform: uppercase;">risk Tasks</h1>
+                    <br/>
+
+                    <h3>contact company to check witness informations</h3>
+                    <br/>
+                    <strong>requested risk:</strong><br/><field name="action_id"/>
+                    <br/>
+                    <button name="test_url_cantact" type="object" string="cantact company"
+                            style="background-color:#006600;color:white;"/>
+                    <br/>
+                    <br/>
+                    <h4>as Cordinator Submit an Apropriate Action To(External/Internal)Resource:</h4>
+                    <br/>
+
+
+
+
+                    <br/>
+
+
+                    <notebook>
+                        <page string="action description">
+                            <group>
+                                <field name="risk_count"/>
+                                <field name="action_risk"/>
+
+                                <field name="action_name"/>
+
+                                <field name="action_category"/>
+
+                                <field name="action_description"/>
+
+                                <field name="action_source" widget="radio" options="{'clickable':'1'}"/>
+
+                            </group>
+                        </page>
+
+
+                        <page string="time/location">
+                            <group>
+
+
+                                <field name="action_start_date"/>
+
+
+                                <field name="action_end_date"/>
+                                <br/>
+                                <field name="department_id"/>
+
+
+                                <field name="location"/>
+                            </group>
+                        </page>
+
+
+                        <page string="External/Internal Resource">
+                            <group>
+
+
+                                <h3>Select the apropriate CMS employee for mission:</h3>
+
+
+                                <field name="risk_owner" widget="many2many_tags"/>
+
+
+                                <br/>
+                                <button name="%(hr.open_view_employee_list_my)d" type="action"
+                                        string="Call employee" style="background-color:#006600;color:white;"/>
+
+
+
+
+                                <h3>select an external ressource:</h3>
+
+
+
+
+                                <field name="ext_res_category"/>
+
+                                <h5>contact:</h5>
+                                <button name="%(contacts.action_contacts)d" type="action"
+                                        string="External Ressource"
+                                        style="background-color:#006600;color:white;"/>
+                                <h5>search :</h5>
+                                <button name="test_url" type="object" string="map"
+                                        style="background-color:#006600;color:white;"/>
+                                <h5>check action status</h5>
+
+
+
+                                <br/>
+
+
+                                <field name="action_success"/>
+                                <field name="emergency_degree" widget="radio"/>
+                                <br/>
+
+                                <button name="%(mail.action_discuss)d" type="action" string="Call SuperObserver"
+                                        style="background-color:#006600;color:white;"/>
+                                <br/>
+                                <field name="progress_action" widget="progressbar" style="color:green;default=20.0"
+                                       default="20"/>
+
+
+                                <br/>
+                                <field name="action_status" widget="statusbar" options="{'clickable':'1'}"/>
+                                <field name="action_result" widget="radio"/>
+
+
+                            </group>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+
+
+    <record id="tree_view_risk_impact_form" model="ir.ui.view">
+        <field name="name">form.view.impact</field>
+        <field name="model">risk.impact</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="risk"/>
+                <field name="impact_Category"/>
+                <field name="risk_rating"/>
+                <field name="risk_score"/>
+                <field name="risk_score_state"/>
+
+
+            </kanban>
+        </field>
+    </record>
+
+
+    <!--kanban risk disaster view-->
+
+    <record id="risk_kanban" model="ir.ui.view">
+        <field name="name">Risk informations</field>
+        <field name="model">risk.disaster</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+                            <kanban>
+
+<!--            <kanban class="o_kanban_mobile">-->
+
+
+                <field name="risk_name"/>
+                <field name="risk_status"/>
+                <field name="risk_category"/>
+                <field name="risk_description"/>
+                <field name="risk_start_datetime"/>
+
+
+                <field name="priority_level"/>
+                <field name="risk_status"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban">
+
+                            <div class="oe_kanban_details" >
+
+
+
+
+                                <!--ll-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <strong>risk name:</strong>
+
+
+
+
+                                <strong>
+
+
+
+
+                                    <field name="risk_name"   style="color:black;font_size:15px;"/>
+                                </strong>
+                                <br/>
+                                <strong>risk status:</strong>
+                                <strong>
+                                    <field name="risk_status"/>
+                                </strong>
+                                <br/>
+                                <strong>risk category:</strong>
+                                <strong>
+                                    <field name="risk_category"/>
+                                </strong>
+                                <br/>
+                                <strong>risk description:</strong>
+                                <strong>
+                                    <field name="risk_description"/>
+                                </strong>
+                                <br/>
+                                <strong>start date time:</strong>
+                                <strong>
+                                    <field name="risk_start_datetime"/>
+                                </strong>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+
+
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- action kanban view-->
+
+
+    <record id="action_kanban" model="ir.ui.view">
+        <field name="name">Risk Tasks</field>
+        <field name="model">risk.action</field>
+        <!--        <field name="priority" eval="8"/>-->
+        <field name="arch" type="xml">
+            <kanban class="o_action_kanban">
+
+
+                <field name="action_category"/>
+                <field name="progress_action"/>
+                <field name="action_success"/>
+                <field name="risk_owner"/>
+                <field name="action_description"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban" >
+                            <div class="oe_kanban_details">
+                                    <strong>action name:</strong>
+                                    <field name="action_name"/>
+                                <br/>
+
+
+
+                                    <strong>category:</strong>
+                                    <field name="action_category"/>
+                                <br/>
+
+
+                                    <strong>Action Description:</strong>
+                                    <field name="action_description"/>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- form view risk disaster-->
+
+
+    <record id="view_risk_form" model="ir.ui.view">
+        <field name="name">disaster.type.form</field>
+        <field name="model">risk.disaster</field>
+        <field name="arch" type="xml">
+
+            <form>
+
+
+                <header>
+
+
+                    <field name="risk_status" widget="statusbar" options="{'clickable':'1'}"/>
+
+                    <button type="object" name="set_state_inprogress" string="set in progress"
+                            attrs="{'invisible':[('risk_status','!=','draft')]}" style="background-color:#ec6f5c"/>
+                    <button type="object" name="set_state_draft" string="set in draft"
+                            attrs="{'invisible':[('risk_status','!=','closed')]}" style="background-color:#d0ecf1"/>
+
+                    <button type="object" name="set_state_closed" string="set in closed"
+                            attrs="{'invisible':[('risk_status','!=','inprogress')]}" style="background-color:#81ee80"/>
+
+
+
+                </header>
+
+
+                <sheet>
+
+
+                    <h1 style=" color:white;background-color:#9caad2; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 500; line-height: 50px; margin: 0 0 24px; text-align: center; text-transform: uppercase;">As Witness Input Risk</h1>
+                    <field name="image_1920" type="base64"
+                           file="risks_disaster_management/static/description/src/img-1.jpeg" widget="image"
+                           width="130px" height="130px"/>
+                    <br/>
+
+                    <br/>
+
+
+                    <notebook>
+                        <page string="risk information">
+                            <group>
+                                <field name="risk_name"/>
+                                <field name="risk_category"/>
+                                <field name="risk_description"/>
+                                <field name="code"/>
+                                <field name="campany_name"/>
+                                <field name="risk_cause"/>
+                                <field name="probability"/>
+<!--                                <field name="risk_count"/>-->
+
+                                <field name="risk_source" widget="radio" options="{'clickable':'1'}"/>
+
+
+
+                            </group>
+
+
+                        </page>
+
+
+                        <page string="Time/Location">
+
+
+                            <group>
+                                <field name="risk_start_datetime"/>
+                                <field name="risk_end_datetime"/>
+
+                                <field name="location" attrs="{'invisible':[('risk_source','=','external')]}"/>
+                                <field name="department" attrs="{'invisible':[('risk_source','=','external')]}"/>
+                                <field name="priority_level"/>
+<!--                                <field name="company_id" />-->
+                                <br/>
+                                <field name="risk_street" placeholder="Street" attrs="{'invisible':[('risk_source','=','internal')]}"/>
+                                <field name="risk_city" placeholder="City" attrs="{'invisible':[('risk_source','=','internal')]}"/>
+                                <field name="risk_country" attrs="{'invisible':[('risk_source','=','internal')]}" />
+                                <field name="risk_street_number" placeholder="Street Number" attrs="{'invisible':[('risk_source','=','internal')]}"/>
+                                <field name="risk_latitude" attrs="{'invisible':[('risk_source','=','internal')]}"/>
+                                <field name="risk_longitude" attrs="{'invisible':[('risk_source','=','internal')]}"/>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d409960.36502665526!2d10.098865818570756!3d36.606755953768385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x12e2cad2e1d7f1bb%3A0x902488d100b5819b!2sA%C3%A9roport%20Tunis-Carthage%2C%20Tunis!3m2!1d36.8475562!2d10.2175601!4m5!1s0x12fd6392f2b26221%3A0xe9cf290510e9a7c3!2sM%C3%A9hari%20Hammamet%2C%20Yasmine%20Hammamet!3m2!1d36.3632716!2d10.5346542!5e0!3m2!1sfr!2stn!4v1649151497246!5m2!1sfr!2stn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">map</iframe>
+
+
+
+
+
+                            </group>
+                        </page>
+
+
+                        <page string="witness information">
+
+                            <group>
+                                <field name="witness_name"/>
+                                <field name="witness_job"/>
+                                <field name="witness_phone" widget="phone"/>
+                                <field name="Witness_email" placeholder="Email" widget="email"/>
+                                <field name="witness_category" widget="radio"/>
+                                <field name="witness_location"/>
+                                <field name="witness_street" placeholder="Street"/>
+                                <field name="witness_city" placeholder="City"/>
+                                <field name="Witness_country" placeholder="Country"/>
+                                <field name="witness_street_number" placeholder="Street Number"/>
+
+
+                                <button name="%(mail.action_discuss)d" type="action" string="Live Call"
+                                        style="background-color:#006600;color:white;"/>
+                                <button type="action" name="%(website_event_meet.event_meeting_room_action)d" string="meet cordinator using jitsi" style="background-color:#006600;color:white;" />
+
+                                <button type="action" name="%(crm.action_lead_mail_compose)d" string="send Email to cordinator" style="background-color:#006600;color:white;" widget="email"/>
+                                <button type="action" name="%(note.action_note_note)d"  string="send note to cordinator" style="background-color:#006600;color:white;" widget="email"/>
+
+
+
+
+                            </group>
+
+
+                        </page>
+                    </notebook>
+
+
+
+                </sheet>
+
+
+
+            </form>
+
+
+
+        </field>
+
+    </record>
+
+
+    <!-- form view impacts-->
+    <record id="form_view_risk_impact_form" model="ir.ui.view">
+        <field name="name">disaster.type.form</field>
+        <field name="model">risk.impact</field>
+        <field name="arch" type="xml">
+
+            <form>
+            <header>
+                            <button name="%(risks_disaster_management.report_impact)d" string="print" type="action"/>
+
+            </header>
+                <sheet>
+
+
+                    <h1 style=" color:white;background-color:#9caad2; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 500; line-height: 50px; margin: 0 0 24px; text-align: center; text-transform: uppercase;">Risk Impact</h1>
+
+                    <group>
+                        <field name="risk"/>
+<!--                        <field name="impact_degree"  widget="radio"/>-->
+
+                        <field name="description_effect"/>
+                        <field name="impact_Category" />
+                        <field name="impact_status" widget="radio"/>
+                        <field name="victim_employee" attrs="{'invisible':[('heath_safety','=','minimal or no harm to person')]}"/>
+                        <field name="heath_safety"/>
+                        <field name="monetory_values"/>
+                        <field name="organization_impact" />
+                        <field name="environment_impact"/>
+                        <field name="risk_impact_level"/>
+                        <field name="risk_rating"/>
+                        <field name="risk_score"  />
+                        <field name="risk_score_state"/>
+<!--                        <field name="risk_probability" />-->
+                        <field name="image" widget="image"/>
+
+
+
+
+                        <br/>
+                        <button name="%(account.res_partner_action_customer)d" string="notify customers" type="action" style="background-color:#006600;color:white;"/>
+                        <button string="modify customer order status" name="%(sale.action_orders)d" type="action" style="background-color:#006600;color:white;"/>
+                        <button name="%(stock.stock_picking_action_picking_type)d" string="damage stock?" type="action" style="background-color:#006600;color:white;"/>
+
+
+
+                    </group>
+
+                </sheet>
+
+            </form>
+
+
+
+
+
+        </field>
+    </record>
+
+
+    <!--kanban risk disaster view-->
+
+    <record id="risk_kanban_cause_form" model="ir.ui.view">
+        <field name="name">Risk causes details</field>
+        <field name="model">risk.cause</field>
+        <!--        <field name="priority" eval="8"/>-->
+        <field name="arch" type="xml">
+            <kanban class="o_cause_kanban">
+                <field name="cause_name"/>
+                <field name="risk_cause_id"/>
+                <field name="risk_causes"/>
+                <field name="risk_responsible_ids"/>
+                <field name="risk_cause_source"/>
+                <field name="cause_category"/>
+                <!--                 <field name="risk_status"/>-->
+                <field name="risk_responsible_category"/>
+
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click o_res_partner_kanban" style="background-color:
+#F5F5F5;">
+                            <div class="oe_kanban_details">
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Cause Name</strong>-->
+
+                                <strong>cause name:</strong>
+                                <strong>
+                                    <field name="cause_name"/>
+                                </strong>
+                                <!--                                </span>-->
+                                <br/>
+
+
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Risk refers to risk ID:</strong>-->
+                                <strong>cause refers to risk</strong>
+                                <strong>
+                                    <field name="risk_cause_id"/>
+                                </strong>
+                                <br/>
+                                <!--                                </span>-->
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Risk cause category:</strong>-->
+                                <strong>cause description</strong>
+                                <strong>
+                                    <field name="risk_causes"/>
+                                </strong>
+                                <br/>
+                                <!--                                </span>-->
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Risk responsible(s) ID(s) :</strong>-->
+                                <!--                                    <field name="risk_responsible_ids"/>-->
+                                <!--                                </span>-->
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Cause source:</strong>-->
+                                <!--                                    <field name="risk_cause_source"/>-->
+                                <!--                                </span>-->
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Cause Category:</strong>-->
+                                <!--                                    <field name="cause_category"/>-->
+                                <!--                                </span>-->
+                                <!--                                 <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Risk Status:</strong>-->
+                                <!--                                    <field name="risk_status"/>-->
+                                <!--                                </span>-->
+                                <!--                                <span style="display:block;color:black;font-size:14px">-->
+                                <!--                                    <strong>Responsible Category:</strong>-->
+                                <!--                                    <field name="risk_responsible_category"/>>-->
+                                <!--                                </span>-->
+
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+
+            </kanban>
+        </field>
+    </record>
+
+
+    <!--form view cause-->
+    <record id="view_risk_cause_form" model="ir.ui.view">
+        <field name="name">cause.type.form</field>
+        <field name="model">risk.cause</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <templates>
+                        <t t-name="sheet_box">
+
+
+                            <div class="oe_form_global_click o_res_partner_kanban">
+
+
+                                <h1>Risk Causes</h1>
+                                <field name="image_1920" type="base64"
+                                       file="risks_disaster_management/static/description/src/img-1.jpeg" widget="image"
+                                       width="130px" height="130px"/>
+
+
+                                <group>
+                                    <field name="cause_name"/>
+                                    <field name="risk_cause_id"/>
+                                    <field name="risk_causes"/>
+                                    <!--                         <field name="risk_status"/>-->
+                                </group>
+                                <group>
+
+                                    <field name="risk_responsible_ids" widget="many2many_tags"/>
+                                    <field name="risk_responsible_category" widget="radio" options="{'clickable':'1'}"/>
+                                    <field name="cause_location"/>
+
+                                </group>
+                                <group>
+                                    <field name="risk_cause_source" widget="radio" options="{'clickable':'1'}"/>
+                                    <field name="cause_category"/>
+                                </group>
+
+
+                            </div>
+
+
+                        </t>
+                    </templates>
+                </sheet>
+
+
+            </form>
+
+
+        </field>
+    </record>
+
+
+
+
+
+</odoo>

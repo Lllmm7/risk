@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- send SMS-->
+
+    <record id="sms.sms_composer_action_form" model="ir.actions.act_window">
+           <field name="name">Send SMS Text Message</field>
+    </record>
+
+    <record id="im_livechat.im_livechat_channel_action" model="ir.actions.act_window">
+           <field name="name">Live Chat</field>
+    </record>
+    <record id="im_livechat.im_livechat_channel_action" model="ir.actions.act_window">
+                   <field name="name">Live Chat</field>
+    </record>
+     <record id="mail.action_discuss" model="ir.actions.client">
+         <field name="name">discuss</field>
+     </record>
+
+    <record id="mail.mail_notification_action" model="ir.actions.act_window">
+        <field name="name">Notifications</field>
+    </record>
+    <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+            </record>
+    <record id="hr.hr_work_location_action" model="ir.actions.act_window">
+    </record>
+    <record id="contacts.action_contacts" model="ir.actions.act_window">
+    </record>
+    <record id="website_jitsi.chat_room_action" model="ir.actions.act_window">
+        <field name="name">Chat Rooms</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+
+
+
+
+
+</odoo>

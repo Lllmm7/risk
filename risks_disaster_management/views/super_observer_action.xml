@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+         <record id="action_observer_disaster" model="ir.actions.act_window">
+        <field name="name">super.observer.form</field>
+        <field name="res_model">observer.action</field>
+        <field name="view_mode">form</field>
+
+    </record>
+
+
+
+    <record id="view_super_observer_form" model="ir.ui.view">
+        <field name="name">observer.form</field>
+        <field name="model">observer.action</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                   <field name="crisis_status" widget="statusbar" options="{'clickable':'1'}"/>
+
+                    <button type="object" name="set_state_inprogress" string="set in progress"
+                            attrs="{'invisible':[('crisis_status','!=','draft')]}" style="background-color:#ec6f5c"/>
+                    <button type="object" name="set_state_draft" string="set in draft"
+                            attrs="{'invisible':[('crisis_status','!=','closed')]}" style="background-color:#d0ecf1"/>
+
+                    <button type="object" name="set_state_closed" string="set in closed"
+                            attrs="{'invisible':[('crisis_status','!=','inprogress')]}" style="background-color:#81ee80"/>
+                </header>
+                <sheet>
+                                        <h1 style=" color:white;background-color:#9caad2; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 500; line-height: 50px; margin: 0 0 24px; text-align: center; text-transform: uppercase;">Super Observer Action</h1>
+
+                    <notebook>
+                        <page string="ObserverInformaions">
+                    <group>
+
+                        <field name="observer_name"/>
+                        <field name="observer_category" widget="radio"/>
+                        <field name="observer_job"/>
+                        <field name="observer_phone" widget="phone"/>
+                        <field name="observer_email" widget="email"/>
+                        <field name="observer_street"/>
+                        <field name="observer_city" />
+                        <field name="observer_street_number"/>
+                        <field name="observer_available" widget="radio"/>
+
+                <button name="%(mail.action_discuss)d" type="action" string="notify your avaibility to
+                cordinator"
+                                        style="background-color:#006600;color:white;"/>
+                    </group>
+                        </page>
+                        <page string="ObserverAction">
+                            <group>
+
+                                <field name="observer_risk" />
+                                <field name="risk_description" />
+                                <field name="observer_status" widget="radio" />
+                                <field name="mission_type" attrs="{'invisible':[('observer_status','!=','Accept')]}" />
+                                <field name="observer_action" attrs="{'invisible':[('observer_status','!=','Accept')]}"/>
+                                <field name="apropriate_employee" attrs="{'invisible':['|',('observer_category','=','External'),('observer_status','=','Accept')]}" />
+                                <field name="mission_status"  widget="radio" attrs="{'invisible':[('observer_status','!=','Accept')]}" />
+                                <field name="presence_status" widget="radio" attrs="{'invisible':[('observer_status','!=','Accept')]}"/>
+                                <field name="external_res" attrs="{'invisible':[('observer_category','=','Internal')]}"/>
+
+
+                            </group>
+                        </page>
+
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+
+        </field>
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

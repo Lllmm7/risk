@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_contact_company" model="ir.ui.view" >
+        <field name="name">inherirted.model.form.cantact</field>
+        <field name="model">res.partner</field><!-- modele herité-->
+        <field name="inherit_id" ref="base.view_partner_form"/><!--nom du view de model mére-->
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+
+                <br/>
+
+
+
+            </field>
+            <xpath expr="//field[@name='image_1920']" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(risks_disaster_management.action_view_risks_actions_form)d" string="actions" type="action" class="oe_stat_button" icon="fa-wrench"/>
+                    </div>
+                 <div class="oe_button_box" name="button_box">
+                        <button name="%(risks_disaster_management.action_view_disaster)d" string="risks" type="action" class="oe_stat_button" icon="fa-warning"/>
+                    </div>
+                </xpath>
+
+
+
+        </field>
+
+
+    </record>
+
+
+
+
+
+
+     <record id="view_contact_employee" model="ir.ui.view" >
+        <field name="name">inherirted.model.form.employee</field>
+        <field name="model">hr.employee</field><!-- modele herité-->
+        <field name="inherit_id" ref="hr.view_employee_form"/><!--nom du view de model mére-->
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+
+
+                <br/>
+                <field name="hr_available" />
+                <button name="%(risks_disaster_management.action_view_risks_actions_form)d"   type="action" widget="stat info" string="submit availability status to cordinator" style="background-color:red;color:white;"/>
+
+            </field>
+            <xpath expr="//field[@name='image_1920']" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(risks_disaster_management.action_view_risks_actions_form)d" string="actions" type="action" class="oe_stat_button" icon="fa-wrench"/>
+                    </div>
+                <div class="oe_button_box" name="button_box">
+                        <button name="%(risks_disaster_management.action_view_disaster)d" string="risks" type="action" class="oe_stat_button" icon="fa-warning"/>
+                    </div>
+            </xpath>
+
+        </field>
+
+
+    </record>
+
+
+
+
+
+    <record id="view_contact_company_form" model="ir.ui.view" >
+        <field name="name">inherirted.model.form.company</field>
+        <field name="model">res.partner</field><!-- modele herité-->
+        <field name="inherit_id" ref="base.view_partner_form"/><!--nom du view de model mére-->
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="action_id"/>
+                <field name="available" widget="checkbox"/>
+<!--                <button name="test_url_cantact_company_action" type="object" string="back to action" style="background-color:green;color:white;"/>-->
+
+
+
+
+
+
+
+            </field>
+
+        </field>
+
+
+    </record>
+
+
+
+
+</odoo>

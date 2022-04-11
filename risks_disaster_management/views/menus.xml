@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+
+
+    <menuitem name="Risks" id="menu_risk">
+        <menuitem id="principal_menu_risk"  action="action_view_disaster" />
+                <menuitem name="Report" id="score_menu"  />
+                <menuitem id="principal_menu_risk_information" action="action_view_risks_form"  />
+
+
+<!--        <menuitem name="Risk miltigation" id="miltigation_menu" action="action_view_risks_prevention" />-->
+        <menuitem action="action_observer_disaster" id="observer_mission" name="superobserver"/>
+
+        <menuitem name="Configuration" id="risk_config" />
+        <menuitem name="Project Risks" id="action_project_view" action="project.open_view_project_all"/>
+<!--        <menuitem name="Dashboard" id="risk_dashboard" action="risk_view"/>-->
+
+
+
+
+
+
+
+
+
+
+    </menuitem>
+        <menuitem action="action_view_disaster_graph" name="Actions Analysis" id="Risk_action_analysis" parent="principal_menu_risk_information"/>
+        <menuitem        action="action_view_disaster_impact" name="Impact Analysis" id="impact_analysis" parent="principal_menu_risk_information"/>
+<!--    <menuitem name="Task Incident" id="incident_view" action="risk_project_view" parent="action_project_view"/>-->
+<!--        <menuitem name="Incident Analysis" id="incident_analysis" action="risk_incident_analysis" parent="action_project_view"/>-->
+    <menuitem name="Dashboard" parent="score_menu" id="dashboard_risk" action="risk_view"/>
+
+
+
+    <menuitem action="risk_view_config_response" name="Risk Config" id="Risk_Response" parent="risk_config"/>
+<!--    <menuitem action="risk_view_config_type" name="Risk Type" id="Risk_Type" parent="risk_config"/>-->
+
+
+<!--    <menuitem name="Risk causes" id="menu_risk_cause" parent="principal_menu_risk_information"-->
+<!--              action="action_view_risks_cause_form">-->
+<!--    </menuitem>-->
+
+    <menuitem name="Risk actions" id="action_menu" parent="principal_menu_risk_information"
+              action="action_view_risks_actions_form"/>
+
+    <menuitem name="Risk impacts" id="impact_menu" parent="principal_menu_risk_information"
+              action="action_view_impact_disaster"/>
+<!--    <menuitem name="Risk strategies" id="strategy_menu" parent="miltigation_menu" action="action_view_risks_strategy"/>-->
+<!--    <menuitem name="Risk report" id="report_menu" parent="score_menu" action="action_view_risks_report"/>-->
+<!--    <menuitem name="Risk dashbord" id="dashbord_menu" parent="score_menu" action="view_disaster_dashboard"/>-->
+
+
+
+</odoo>

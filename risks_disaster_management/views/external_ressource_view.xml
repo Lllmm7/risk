@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="action_view_external_ressource" model="ir.actions.act_window">
+        <field name="name">External Ressource</field>
+        <field name="res_model">external.ressource</field>
+        <field name="view_mode">form,tree</field>
+    </record>
+
+     <record id="view_ext_ressource_form" model="ir.ui.view">
+        <field name="name">external ressource</field>
+        <field name="model">external.ressource</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+
+                </header>
+
+                <templates>
+                    <t t-name="kanban-box" >
+                        <sheet>
+                            <div style="background-color:#F5F5F5;">
+                            <h1>Choose The Apropriate External Ressource To Handle Your Risk</h1>
+                                <br/>
+                                <notebook>
+                                    <page string="external ressource details">
+
+                <span style="display:block;color:black;font-size:14px">
+                    <strong>external ressource name:</strong>
+                    <field name="ext_res_name"/>
+                </span>
+                                <br/>
+                                <span style="display:block;color:black;font-size:14px">
+                    <strong>external ressource refers to risk:</strong>
+                    <field name="ext_res_ref"/>
+                </span>
+                                <br/>
+                                <span style="display:block;color:black;font-size:14px">
+                    <strong>risk status:</strong>
+                    <field name="risk_status"/>
+                </span>
+
+                <span style="display:block;color:black;font-size:14px">
+                    <strong>external ressource category:</strong>
+                    <field name="ext_res_category"/>
+                </span>
+
+                 <span style="display:block;color:black;font-size:14px">
+                    <strong>description:</strong>
+                <field name="description"/>
+                 </span>
+                                        <br/>
+                                        <span style="display:block;color:black;font-size:14px">
+                    <strong>availability:</strong>
+                <field name="availabilty" widget="checkbox"/>
+                 </span>
+
+                 <span style="display:block;color:black;font-size:14px">
+                    <strong>cantact:</strong>
+                     live call
+                     <button name="%(mail.action_discuss)d" type="action"   string="Live Call" style="background-color:#006600;color:white;"/>
+                 </span>
+                <br/>
+                                    </page>
+
+                    <page string="company informations">
+
+                     <br/>
+                     <span style="display:block;color:black;font-size:14px">
+                    <strong>campany name:</strong>
+                         <field name="company_name"/>
+                     </span>
+                        <br/>
+                         <span style="display:block;color:black;font-size:14px">
+                        <strong>phone company:</strong>
+                        <field name="campany_phone"/>
+                         </span>
+                     <br/>
+                        <span style="display:block;color:black;font-size:14px">
+                    <strong>input geographical location :</strong>
+                    <br/>
+                    company street: <field name="location_campany_street" placeholder="street "/>
+                     street number:<field name="location_campany_street_number" placeholder="number"/>
+                     city:<field name="location_campany_city" placeholder="city"/>
+                        </span>
+
+                    </page>
+                                    <page>
+                                        <strong>input geographical location :</strong>
+                                    <br/>
+                                        company street: <field name="location_campany_street" placeholder="street "/>
+                                        street number:<field name="location_campany_street_number" placeholder="number"/>
+                                        city:<field name="location_campany_city" placeholder="city"/>
+
+
+
+                                    </page>
+
+
+
+                                </notebook>
+                            </div>
+                        </sheet>
+                    </t>
+                </templates>
+            </form>
+            </field>
+    </record>
+
+
+
+</odoo>

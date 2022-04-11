@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_disaster">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h1>Risks Disaster Report</h1>
+                <h2>Campany:</h2>: <strong><t t-esc="doc.campany_name" /></strong>
+                <hr/>
+                <hr/>
+                <h3>Risks Informations Details</h3>
+
+                <br/>
+                <strong>Risk Name:</strong>
+                <t t-esc="doc.risk_name"/>
+                <br/>
+                <hr/>
+                <br/>
+                <strong>Risk Status:</strong>
+                <t t-esc="doc.risk_status"/>
+                <br/>
+                <hr/>
+
+                <strong>Risk Category:</strong>
+                <t t-esc="doc.risk_category"/>
+                <br/>
+                <hr/>
+
+                <strong>Risk Description:</strong>
+                <t t-esc="doc.risk_description"/>
+                <br/>
+                <hr/>
+                <strong>Start DateTime:</strong>
+                <t t-esc="doc.risk_start_datetime"/>
+                <br/>
+                <hr/>
+                <strong>Start EndDate:</strong>
+                <t t-esc="doc.risk_end_datetime"/>
+                <br/>
+                <hr/>
+                <strong>Location:</strong>
+                <t t-esc="doc.location"/>
+                <br/>
+                <strong>Cause Description:</strong>
+                <t t-esc="doc.risk_cause"/>
+                <br/>
+                <hr/>
+                <hr/>
+                <h3>Witness Informations</h3>
+                <hr/>
+                <hr/>
+
+                <strong>Witness Name:</strong>
+                <t t-esc="doc.witness_name"/>
+                <br/>
+                <hr/>
+                <strong>Witness Job:</strong>
+                <t t-esc="doc.witness_job"/>
+                <br/>
+                <hr/>
+                <strong>Geographical Locaion:</strong>
+                <t t-esc="doc.witness_location"/><br/><hr/>
+                <strong>latitude/Lagitutde:</strong>
+                <t t-esc="doc.risk_latitude"/>/<t t-esc="doc.risk_longitude"/><br/><hr/>
+                <strong>Witness Category:</strong>
+                <t t-esc="doc.witness_category"/>
+                <br/>
+                <hr/>
+                <strong>Cause description:</strong><br/><hr/>
+                <t t-esc="doc.risk_cause"/>
+                <br/>
+
+
+
+
+
+
+
+
+     </t>
+    </t>
+    </template>
+
+    <template id="report_action">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <h1>Action Report</h1>
+                <br/><hr/><hr/>
+                <strong>Action Name:</strong>
+                <t t-esc="doc.action_name"/><br/><hr/>
+                <strong>Risk Disaster:</strong>
+
+                <t t-esc="doc.action_risk"/><br/><hr/>
+                <strong>Action Category:</strong>
+
+                <t t-esc="doc.action_category"/><br/><hr/>
+                <strong>Action Start Date:</strong>
+
+                <t t-esc="doc.action_start_date"/><br/><hr/>
+                <strong>Action End Date:</strong>
+
+                <t t-esc="doc.action_end_date"/><br/><hr/>
+                <strong>Action Status:</strong>
+
+                <t t-esc="doc.action_status"/><br/><hr/>
+                <strong>Action Progress:</strong>
+
+                <t t-esc="doc.progress_action"/><br/><hr/>
+                <strong>Risk Owner:</strong>
+
+                <t t-esc="doc.risk_owner"/><br/><hr/>
+            </t>
+        </t>
+    </template>
+
+
+
+
+
+<!--    <template id="report_impact">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="doc">-->
+<!--                <h1>Impact Report</h1>-->
+<!--                <br/>-->
+<!--                <br/><hr/><hr/>-->
+<!--                <strong>Risk Name:</strong>-->
+<!--                <t t-esc="doc.risk"/><br/><hr/>-->
+<!--                <strong>Impact Description:</strong>-->
+
+<!--                <t t-esc="doc.description_effect"/><br/><hr/>-->
+<!--                <strong>Impact Status:</strong>-->
+
+<!--                <t t-esc="doc.impact_status"/><br/><hr/>-->
+<!--                <strong>Impact Category:</strong>-->
+
+<!--                <t t-esc="doc.impact_Category"/><br/><hr/>-->
+<!--                <strong>Impact Level:</strong>-->
+
+<!--                <t t-esc="doc.risk_impact_level"/><br/><hr/>-->
+<!--                <strong>Risk Rating:</strong>-->
+
+<!--                <t t-esc="doc.risk_rating"/><br/><hr/>-->
+<!--                <strong>Risk Score:</strong>-->
+
+<!--                <t t-esc="doc.risk_score"/><br/><hr/>-->
+<!--                <strong>Health Safety:</strong>-->
+
+<!--                <t t-esc="doc.heath_safety"/><br/><hr/>-->
+
+<!--                <strong>Monetory Value:</strong>-->
+
+<!--                <t t-esc="doc.monetory_values"/><br/><hr/>-->
+<!--                <strong>Environment Value:</strong>-->
+
+<!--                <t t-esc="doc.environment_impact"/><br/><hr/>-->
+<!--                <strong>Organization Impact:</strong>-->
+
+<!--                <t t-esc="doc.organization_impact"/><br/><hr/>-->
+
+
+
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+
+
+
+
+
+</odoo>

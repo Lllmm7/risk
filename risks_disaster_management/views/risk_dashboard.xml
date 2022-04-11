@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="view_order_line_graph" model="ir.ui.view" >
+   <field name="name">risks.dashboard</field>
+   <field name="model">risk.disaster</field>
+   <field name="type">graph</field>
+   <field name="arch" type="xml">
+         <graph string="Risks Dashbord">
+             <field name="risk_name"/>
+             <field name="risk_status"/>
+             <field name="risk_start_datetime"/>
+             <field name="risk_end_datetime"/>
+             <field name="risk_source"/>
+             <field name="location"/>
+
+        </graph>
+    </field>
+</record>
+
+    <record id="view_disaster_dashboard" model="ir.actions.act_window">
+        <field name="name">Risks</field>
+        <field name="res_model">risk.disaster</field>
+        <field name="view_mode">graph,pivot,tree,form</field>
+
+    </record>
+
+
+</odoo>

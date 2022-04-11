@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="report_disaster" model="ir.actions.report">
+        <field name="name">disaster report</field>
+        <field name="model">risk.disaster</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">risks_disaster_management.report_disaster</field>
+        <field name="report_file">risks_disaster_management.report</field>
+        <field name="binding_model_id" ref="model_risk_disaster"/>
+        <field name="binding_type">report</field>
+    </record>
+
+     <record id="report_action" model="ir.actions.report">
+        <field name="name">action report</field>
+        <field name="model">risk.action</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">risks_disaster_management.report_action</field>
+        <field name="report_file">risks_disaster_management.report</field>
+        <field name="binding_model_id" ref="model_risk_action"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_impact" model="ir.actions.report">
+        <field name="name">impact report</field>
+        <field name="model">risk.impact</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">risks_disaster_management.report_impact</field>
+        <field name="report_file">risks_disaster_management.report</field>
+        <field name="binding_model_id" ref="model_risk_impact"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+
+
+</odoo>

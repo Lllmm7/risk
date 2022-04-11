@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="base_view_company_form" model="ir.ui.view" >
+        <field name="name">projects</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="model">project.project</field>
+    </record>
+
+
+
+
+
+
+     <record id="task_incident_form" model="ir.ui.view" >
+        <field name="name">incident.form</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+
+
+                <button name="%(risk_project_view)d"  type="action" string="create incident" style="background-color:	#9400d3;color:white;object-position: right top;" class="oe_stat_button"/>
+                <div class="oe_button_box" name="button_box">
+                        <button name="%(risks_disaster_management.action_view_risks_actions_form)d" string="actions" type="action" class="oe_stat_button" icon="fa-wrench"/>
+                    </div>
+
+
+
+
+
+
+            </field>
+        </field>
+     </record>
+
+
+
+    <record id="action_project_view" model="ir.actions.act_window">
+        <field name="name">Project Risks</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+
+    </record>
+
+
+    <record id="task_incident_form_project" model="ir.ui.view" >
+        <field name="name">incident.form</field>
+        <field name="inherit_id" ref="risks_disaster_management.form_view_risk_task_project"/>
+        <field name="model">risk.project</field>
+        <field name="arch" type="xml">
+
+            <field name="incident_name" position="before">
+
+
+                <div class="oe_button_box" name="button_box" style="position:right top">
+
+
+                <button name="%(project.open_view_project_all)d"   type="action" string="project" icon="fa-folder"/>
+
+                </div>
+
+                <div class="oe_button_box" name="button_box" style="position:left top">
+                <button name="%(website_event_meet.event_meeting_room_action)d" type="action" string="Meeting" icon="fa-user"/>
+                </div>
+
+
+
+
+
+
+
+            </field>
+
+        </field>
+     </record>
+
+
+    <record id="risk_project_graph" model="ir.actions.act_window">
+        <field name="name">Project views</field>
+        <field name="res_model">risk.project</field>
+        <field name="view_mode">kanban,tree,form,graph</field>
+
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</odoo>

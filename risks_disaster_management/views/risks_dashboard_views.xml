@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="risk_view" model="ir.actions.act_window">
+        <field name="name">Dashbord</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="form_view_risk_dashboard"/>
+
+    </record>
+
+    <record id="risk_incident_analysis" model="ir.actions.act_window">
+        <field name="name">Incidents</field>
+        <field name="res_model">risk.project</field>
+        <field name="view_mode">graph</field>
+
+    </record>
+
+
+  <record id="form_view_risk_dashboard" model="ir.ui.view">
+        <field name="name">Risk Management Analysis</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard">
+                    <board style="1_2">
+                        <column>
+                        <action string="Risk Disaster Dashboard"
+                                name="%(view_disaster_dashboard)d"/>
+
+
+                        </column>
+                        <column>
+                          <action string="Risk Action"
+                                name="%(risks_disaster_management.action_view_disaster_graph)d"/>
+
+                        </column>
+                        <column>
+                          <action string="Risk Impact"
+                                name="%(risks_disaster_management.action_view_disaster_impact)d"/>
+
+                        </column>
+                        <column>
+                          <action string="Incident"
+                                name="%(risks_disaster_management.risk_incident_analysis)d"/>
+
+                        </column>
+
+
+                    </board>
+            </form>
+        </field>
+  </record>
+
+</odoo>
